@@ -1,3 +1,6 @@
+from Deck import *
+
+
 class Card(object):
 
     """Represent a single card drawn from a 52-card deck (without jokers)
@@ -9,11 +12,17 @@ class Card(object):
     """
 
     def __init__(self, id=None, suit='C', number=2):
+        suit_dict = {'C': 0, 'D': 1, 'H': 2, 'S': 3}
+        inv_suit_dict = {v: k for k, v in suit_dict.items()}
         if id:
             self.id = id
-            self.suit = 'C'
-            self.number = 2
+            self.suit = inv_suit_dict[id // Deck.NUM_CARD_IN_SUIT]
+            self.number = id - id // Deck.NUM_CARD_IN_SUIT * Deck.NUM_CARD_IN_SUIT + 2
+            assert (0 <= self.id < Deck.NUM_CARD_IN_SUIT * Deck.NUM_SUIT)
+            assert (2 <= self.number <= 14)
         else:
             self.suit = suit
             self.number = number
-            self.id = 0
+            self.id = suit_dict[suit] * Deck.NUM_CARD_IN_SUIT + self.number - 2
+            assert (0 <= self.id < Deck.NUM_CARD_IN_SUIT * Deck.NUM_SUIT)
+            assert (2 <= self.number <= 14)
