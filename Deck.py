@@ -1,4 +1,5 @@
-import Card
+from Card import *
+from Constants import *
 import random
 
 
@@ -9,18 +10,15 @@ class Deck(object):
     Attributes:
         cards: cards remaining in the deck after playing several rounds (originally 52 cards)
     """
-    NUM_CARD_IN_SUIT = 13
-    NUM_SUIT = 4
 
     def __init__(self):
-        Deck.NUM_CARD_IN_SUIT = 13
-        Deck.NUM_SUIT = 4
-        self.cards = {Card(i) for i in range(Deck.NUM_CARD_IN_SUIT * Deck.NUM_SUIT)}
+        self.cards = {Card(id=i) for i in range(Constants().NUM_CARD_IN_SUIT * Constants().NUM_SUIT)}
 
     def count(self):
         return len(self.cards)
 
     def remove_card(self, card):
+        assert (card in self.cards)
         self.cards.remove(card)
 
     def random_draw(self):

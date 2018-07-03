@@ -1,4 +1,4 @@
-from Deck import *
+from Constants import *
 
 
 class Card(object):
@@ -16,13 +16,19 @@ class Card(object):
         inv_suit_dict = {v: k for k, v in suit_dict.items()}
         if id:
             self.id = id
-            self.suit = inv_suit_dict[id // Deck.NUM_CARD_IN_SUIT]
-            self.number = id - id // Deck.NUM_CARD_IN_SUIT * Deck.NUM_CARD_IN_SUIT + 2
-            assert (0 <= self.id < Deck.NUM_CARD_IN_SUIT * Deck.NUM_SUIT)
+            self.suit = inv_suit_dict[id // Constants().NUM_CARD_IN_SUIT]
+            self.number = id - id // Constants().NUM_CARD_IN_SUIT * Constants().NUM_CARD_IN_SUIT + 2
+            assert (0 <= self.id < Constants().NUM_CARD_IN_SUIT * Constants().NUM_SUIT)
             assert (2 <= self.number <= 14)
         else:
             self.suit = suit
             self.number = number
-            self.id = suit_dict[suit] * Deck.NUM_CARD_IN_SUIT + self.number - 2
-            assert (0 <= self.id < Deck.NUM_CARD_IN_SUIT * Deck.NUM_SUIT)
+            self.id = suit_dict[suit] * Constants().NUM_CARD_IN_SUIT + self.number - 2
+            assert (0 <= self.id < Constants().NUM_CARD_IN_SUIT * Constants().NUM_SUIT)
             assert (2 <= self.number <= 14)
+
+    def __eq__(self, other):
+        return self.id == other.id
+
+    def __hash__(self):
+        return hash(self.id)
