@@ -1,5 +1,5 @@
-from Card import *
-from Constants import *
+from Card import Card
+from Constants import Constants
 import random
 
 

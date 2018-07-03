@@ -1,6 +1,6 @@
 from unittest import TestCase
-from Deck import *
-from Card import *
+from Deck import Deck
+from Card import Card
 
 
 class TestDeck(TestCase):
