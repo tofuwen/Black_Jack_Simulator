@@ -17,3 +17,8 @@ class TestDeck(TestCase):
         self.assertTrue(deck.count() == 50)
         with self.assertRaises(AssertionError):
             deck.remove_card(Card(id=1))
+
+    def test_random_draw(self):
+        deck = Deck()
+        deck.random_draw()
+        self.assertTrue(deck.count() == 51)

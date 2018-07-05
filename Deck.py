@@ -22,6 +22,6 @@ class Deck(object):
         self.cards.remove(card)
 
     def random_draw(self):
-        drawn_card = random.choice(self.cards)
+        [drawn_card] = random.sample(self.cards, 1)
         self.remove_card(drawn_card)
         return drawn_card

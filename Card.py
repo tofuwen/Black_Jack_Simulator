@@ -32,3 +32,10 @@ class Card(object):
 
     def __hash__(self):
         return hash(self.id)
+
+    def get_score(self):
+        if self.number < 10:
+            return [self.number]
+        if self.number == 14:
+            return [1, 11]
+        return [10]
